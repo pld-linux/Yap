@@ -1,0 +1,22 @@
+--- Yap-4.5.4/C/c_interface.c.orig	2004-11-19 23:08:41.000000000 +0100
++++ Yap-4.5.4/C/c_interface.c	2004-12-10 00:49:16.000000000 +0100
+@@ -986,7 +986,7 @@
+ {
+   yamop *codeaddr;
+   int mod = CurrentModule;
+-  Term tn = TermNil
++  Term tn = TermNil;
+ 
+   BACKUP_MACHINE_REGS();
+ 
+--- Yap-4.5.4/C/absmi.c.orig	2004-12-05 06:01:21.000000000 +0100
++++ Yap-4.5.4/C/absmi.c	2004-12-10 00:36:45.000000000 +0100
+@@ -265,7 +265,7 @@
+      return;
+   }
+ #endif
+-  fprintf(FProf,"0 %p\n", PREG);
++  fprintf(FProf,"0 %p\n", P);
+   return;
+ }
+ 
