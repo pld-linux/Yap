@@ -1,0 +1,25 @@
+--- Yap-4.5.5/configure.in.orig	2004-12-14 18:00:25.000000000 +0100
++++ Yap-4.5.5/configure.in	2004-12-24 16:17:15.000000000 +0100
+@@ -335,18 +335,18 @@
+ else
+   INSTALL_COMMAND="install_unix"
+   AC_CHECK_LIB(m,sin)
+-  AC_CHECK_LIB(socket,socket)
++  AC_SEARCH_LIBS(socket,socket)
+   dnl X/Open Networking is sometimes a separate library
+-  AC_CHECK_LIB(xnet,getsockname)
++  AC_SEARCH_LIBS(getsockname,xnet)
++  AC_CHECK_FUNC(gethostbyname, , [
+   AC_CHECK_LIB(nsl,main,
+ 	have_nsl=yes
+ 	,
+ 	have_nsl=no)
++  ])
+ fi
+ 
+ if test "$yap_cv_readline" != "no"
+ then
+-  AC_CHECK_LIB(termcap,tgetent)
+-  AC_CHECK_LIB(ncurses,main)
+   AC_CHECK_LIB(readline,readline)
+ fi
