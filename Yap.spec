@@ -6,6 +6,7 @@ Release:	2
 License:	Artistic
 Group:		Development/Languages
 Source0:	http://www.ncc.up.pt/~vsc/Yap/Yap4.3/%{name}-%{version}.tar.gz
+# Source0-md5:	f242618fc9e17ed2accd8e6b0ed68753
 URL:		http://www.ncc.up.pt/~vsc/Yap
 BuildRequires:	readline-devel
 BuildRequires:	indent
