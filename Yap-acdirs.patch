@@ -103,4 +103,3 @@ diff -ur Yap-4.5.4.pre/library/yap2swi/Makefile.in Yap-4.5.4/library/yap2swi/Mak
  #
  #
  CC=@CC@
-Tylko w Yap-4.5.4.pre/: .pre
