@@ -10,12 +10,14 @@ Source0:	http://dl.sourceforge.net/yap/%{name}-%{version}.tar.gz
 Patch0:		%{name}-acdirs.patch
 Patch1:		%{name}-port.patch
 Patch2:		%{name}-nolibs.patch
+Patch3:		%{name}-info.patch
 URL:		http://www.ncc.up.pt/~vsc/Yap/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	readline-devel
-BuildRequires:	indent
 BuildRequires:	gmp-devel
+BuildRequires:	indent
+BuildRequires:	readline-devel
+BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # follow configure
@@ -52,6 +54,7 @@ Statyczna biblioteka dla kompilatora prologu YAP.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -67,6 +70,8 @@ CFLAGS="%{rpmcflags}%{!?debug: -fomit-frame-pointer} -Wall"
 	--enable-low-level-tracer
 
 %{__make}
+
+%{__make} -C docs info
 
 %install
 rm -rf $RPM_BUILD_ROOT
