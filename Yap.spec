@@ -1,13 +1,17 @@
 Summary:	Prolog Compiler
 Summary(pl):	Kompilator Prologu
 Name:		Yap
-Version:	4.3.22
-Release:	2
+Version:	4.4.4
+Release:	1
 License:	Artistic
 Group:		Development/Languages
-Source0:	http://www.ncc.up.pt/~vsc/Yap/Yap4.3/%{name}-%{version}.tar.gz
-# Source0-md5:	f242618fc9e17ed2accd8e6b0ed68753
+Source0:	http://www.ncc.up.pt/~vsc/Yap/%{name}-%{version}.tar.gz
+# Source0-md5:	7d0f17305c87874dccdad5ce465a164a
+# Source0-size:	2970956
+Patch0:		%{name}-acdirs.patch
 URL:		http://www.ncc.up.pt/~vsc/Yap/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	readline-devel
 BuildRequires:	indent
 BuildRequires:	gmp-devel
@@ -41,8 +45,12 @@ Statyczna biblioteka dla kompilatora prologu YAP.
 
 %prep
 %setup -q
+%patch0
 
 %build
+cp -f /usr/share/automake/config.sub .
+%{__aclocal}
+%{__autoconf}
 %configure \
 	--enable-coroutining \
 	--enable-depth-limit \
