@@ -1,21 +1,25 @@
 Summary:	Prolog Compiler
 Summary(pl):	Kompilator Prologu
 Name:		Yap
-Version:	4.5.4
+Version:	4.5.5
 Release:	1
 License:	Artistic
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/yap/%{name}-%{version}.tar.gz
-# Source0-md5:	a31c469361e2e7893d04338444e52802
+# Source0-md5:	661e289f4bdac0e6cfc7e59d4421c2a8
 Patch0:		%{name}-acdirs.patch
+Patch1:		%{name}-port.patch
+Patch2:		%{name}-nolibs.patch
 URL:		http://www.ncc.up.pt/~vsc/Yap/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	readline-devel
 BuildRequires:	indent
 BuildRequires:	gmp-devel
-ExcludeArch:	alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# follow configure
+%define		specflags_ia32	-DBP_FREE
 
 %description
 A high-performance Prolog compiler developed at LIACC, Universidade do
@@ -35,7 +39,7 @@ z Prologiem Quintus i SICStus.
 Summary:	Static library for YAP Prolog
 Summary(pl):	Statyczna biblioteka dla kompilatora Prologu YAP
 Group:		Development/Languages
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description static
 Static library for YAP prolog.
@@ -46,16 +50,21 @@ Statyczna biblioteka dla kompilatora prologu YAP.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
+CFLAGS="%{rpmcflags}%{!?debug: -fomit-frame-pointer} -Wall"
 %configure \
+	C_INTERF_FLAGS="%{rpmcflags} -Wall" \
+	C_PARSER_FLAGS="%{rpmcflags} -Wall" \
 	--enable-coroutining \
+	%{?debug:--enable-debug-yap} \
 	--enable-depth-limit \
-	--enable-low-level-tracer \
-	--enable-depth-limit
+	--enable-low-level-tracer
 
 %{__make}
 
@@ -86,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* INSTALL changes4.3.html docs/yap.tex
+%doc README* changes4.3.html docs/yap.tex
 %attr(755,root,root) %{_bindir}/yap
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*.so
