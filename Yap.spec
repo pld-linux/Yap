@@ -2,7 +2,7 @@ Summary:	Prolog Compiler
 Summary(pl):	Kompilator Prologu
 Name:		Yap
 Version:	4.5.5
-Release:	1
+Release:	2
 License:	Artistic
 Group:		Development/Languages
 Source0:	http://dl.sourceforge.net/yap/%{name}-%{version}.tar.gz
