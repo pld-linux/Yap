@@ -2,7 +2,7 @@ Summary:	Prolog Compiler
 Summary(pl):	Kompilator Prologu
 Name:		Yap
 Version:	4.3.22
-Release:	1
+Release:	2
 License:	Artistic
 Group:		Development/Languages
 Source0:	http://www.ncc.up.pt/~vsc/Yap/Yap4.3/%{name}-%{version}.tar.gz
@@ -30,7 +30,7 @@ z Prologiem Quintus i SICStus.
 Summary:	Static library for YAP Prolog
 Summary(pl):	Statyczna biblioteka dla kompilatora Prologu YAP
 Group:		Development/Languages
-Requires:	%{name}-%{version}
+Requires:	%{name} = %{version}
 
 %description static
 Static library for YAP prolog.
@@ -52,12 +52,17 @@ Statyczna biblioteka dla kompilatora prologu YAP.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_infodir}
+install -d $RPM_BUILD_ROOT{%{_infodir},%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install docs/*info* $RPM_BUILD_ROOT%{_infodir}
+
+for d in chr clpqr; do
+	mv -f $RPM_BUILD_ROOT%{_datadir}/Yap/$d/examples \
+		$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/$d
+done
 
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
@@ -78,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/Yap
 %{_includedir}/Yap
 %{_infodir}/*info*
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
