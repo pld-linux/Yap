@@ -1,13 +1,12 @@
 Summary:	Prolog Compiler
 Summary(pl):	Kompilator Prologu
 Name:		Yap
-Version:	4.4.4
+Version:	4.5.4
 Release:	1
 License:	Artistic
 Group:		Development/Languages
-Source0:	http://www.ncc.up.pt/~vsc/Yap/%{name}-%{version}.tar.gz
-# Source0-md5:	7d0f17305c87874dccdad5ce465a164a
-# Source0-size:	2970956
+Source0:	http://dl.sourceforge.net/yap/%{name}-%{version}.tar.gz
+# Source0-md5:	a31c469361e2e7893d04338444e52802
 Patch0:		%{name}-acdirs.patch
 URL:		http://www.ncc.up.pt/~vsc/Yap/
 BuildRequires:	autoconf
@@ -88,9 +87,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* INSTALL changes4.3.html docs/yap.tex
 %attr(755,root,root) %{_bindir}/yap
-%attr(755,root,root) %{_libdir}/Yap/startup
-%{_datadir}/Yap
-%{_includedir}/Yap
+%dir %{_libdir}/%{name}
+%attr(755,root,root) %{_libdir}/%{name}/*.so
+%attr(755,root,root) %{_libdir}/%{name}/startup
+%{_datadir}/%{name}
+%{_includedir}/%{name}
 %{_infodir}/*info*
 %{_examplesdir}/%{name}-%{version}
 
