@@ -14,6 +14,7 @@ BuildRequires:	automake
 BuildRequires:	readline-devel
 BuildRequires:	indent
 BuildRequires:	gmp-devel
+ExcludeArch:	alpha
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,7 +45,7 @@ Statyczna biblioteka dla kompilatora prologu YAP.
 
 %prep
 %setup -q
-%patch0
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -60,7 +61,7 @@ cp -f /usr/share/automake/config.sub .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_infodir},%{_examplesdir}/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT{%{_infodir},%{_examplesdir}/%{name}-%{version},%{_libdir}/%{name}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
