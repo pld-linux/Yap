@@ -1,0 +1,33 @@
+--- Makefile.in~	2003-09-10 17:51:53.000000000 +0000
++++ Makefile.in	2004-10-19 05:08:41.901971152 +0000
+@@ -8,24 +8,24 @@
+ #
+ # where the binary should be
+ #
+-BINDIR = $(EROOTDIR)/bin
++BINDIR = @bindir@
+ #
+ # where YAP should look for binary libraries
+ #
+-LIBDIR=$(EROOTDIR)/lib
+-YAPLIBDIR=$(EROOTDIR)/lib/Yap
++LIBDIR=@libdir@
++YAPLIBDIR=@libdir@/Yap
+ #
+ # where YAP should look for architecture-independent Prolog libraries
+ #
+-SHAREDIR=$(ROOTDIR)/share
++SHAREDIR=@datadir@
+ #
+ # where the includes should be stored
+ #
+-INCLUDEDIR=$(ROOTDIR)/include/Yap
++INCLUDEDIR=@includedir@/Yap
+ #
+ # where to store info files
+ #
+-INFODIR=$(SHAREDIR)/info
++INFODIR=@infodir@
+ 
+ #
+ # Add this flag to YAP_EXTRAS if you need the extension:
