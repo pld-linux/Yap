@@ -1,14 +1,3 @@
---- Yap-4.5.4/C/c_interface.c.orig	2004-11-19 23:08:41.000000000 +0100
-+++ Yap-4.5.4/C/c_interface.c	2004-12-10 00:49:16.000000000 +0100
-@@ -986,7 +986,7 @@
- {
-   yamop *codeaddr;
-   int mod = CurrentModule;
--  Term tn = TermNil
-+  Term tn = TermNil;
- 
-   BACKUP_MACHINE_REGS();
- 
 --- Yap-4.5.4/C/absmi.c.orig	2004-12-05 06:01:21.000000000 +0100
 +++ Yap-4.5.4/C/absmi.c	2004-12-10 00:36:45.000000000 +0100
 @@ -265,7 +265,7 @@
@@ -20,3 +9,50 @@
    return;
  }
  
+--- Yap-4.5.4/C/threads.c.orig	2004-12-02 06:58:58.000000000 +0100
++++ Yap-4.5.4/C/threads.c	2004-12-10 01:28:09.000000000 +0100
+@@ -201,7 +201,7 @@
+   return Yap_unify(MkIntegerTerm(worker_id), ARG1);
+ }
+ 
+-int
++Int
+ Yap_thread_self(void)
+ {
+   if (pthread_getspecific(Yap_yaamregs_key) == NULL)
+@@ -209,7 +209,7 @@
+   return worker_id;
+ }
+ 
+-int
++Int
+ Yap_thread_create_engine(thread_attr *ops)
+ {
+   int new_id = allocate_new_tid();
+@@ -225,7 +225,7 @@
+   return TRUE;
+ }
+ 
+-int
++Int
+ Yap_thread_attach_engine(int wid)
+ {
+   pthread_mutex_lock(&(ThreadHandle[wid].tlock));
+@@ -241,7 +241,7 @@
+   return TRUE;
+ }
+ 
+-int
++Int
+ Yap_thread_detach_engine(int wid)
+ {
+   pthread_mutex_lock(&(ThreadHandle[wid].tlock));
+@@ -252,7 +252,7 @@
+   return TRUE;
+ }
+ 
+-int
++Int
+ Yap_thread_destroy_engine(int wid)
+ {
+   pthread_mutex_lock(&(ThreadHandle[wid].tlock));
