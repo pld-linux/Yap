@@ -1,5 +1,5 @@
 Summary:	Prolog Compiler
-Summary(pl.UTF-8):   Kompilator Prologu
+Summary(pl.UTF-8):	Kompilator Prologu
 Name:		Yap
 Version:	4.5.5
 Release:	3
@@ -39,7 +39,7 @@ z Prologiem Quintus i SICStus.
 
 %package static
 Summary:	Static library for YAP Prolog
-Summary(pl.UTF-8):   Statyczna biblioteka dla kompilatora Prologu YAP
+Summary(pl.UTF-8):	Statyczna biblioteka dla kompilatora Prologu YAP
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
