@@ -1,5 +1,5 @@
 Summary:	Prolog Compiler
-Summary(pl):	Kompilator Prologu
+Summary(pl.UTF-8):   Kompilator Prologu
 Name:		Yap
 Version:	4.5.5
 Release:	3
@@ -30,23 +30,23 @@ Machine), with several optimizations for better performance. YAP
 follows the Edinburgh tradition, and is largely compatible with the
 ISO-Prolog standard and with Quintus and SICStus Prolog.
 
-%description -l pl
+%description -l pl.UTF-8
 Wydajny kompilator Prologu stworzony w LIACC, Universidade do
 Porto. Silnik Prologu bazuje na WAM (Warren Abstract Machine), z
-ró¿nymi optymalizacjami dla lepszej wydajno¶ci. Zgodnie z tradycj±
+rÃ³Å¼nymi optymalizacjami dla lepszej wydajnoÅ›ci. Zgodnie z tradycjÄ…
 Edinburgh jest on wysoce kompatybilny ze standardem ISO-Prolog oraz
 z Prologiem Quintus i SICStus.
 
 %package static
 Summary:	Static library for YAP Prolog
-Summary(pl):	Statyczna biblioteka dla kompilatora Prologu YAP
+Summary(pl.UTF-8):   Statyczna biblioteka dla kompilatora Prologu YAP
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description static
 Static library for YAP prolog.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka dla kompilatora prologu YAP.
 
 %prep
