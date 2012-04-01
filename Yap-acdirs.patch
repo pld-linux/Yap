@@ -1,6 +1,6 @@
---- Yap-4.4.4.pre/Makefile.in	2003-09-10 17:51:53.000000000 +0000
-+++ Yap-4.4.4/Makefile.in	2004-10-19 05:08:41.901971152 +0000
-@@ -8,24 +8,24 @@
+--- yap-6.2.2/Makefile.in.orig	2011-10-20 23:17:58.000000000 +0200
++++ yap-6.2.2/Makefile.in	2012-03-28 19:44:30.763163899 +0200
+@@ -9,7 +9,7 @@
  #
  # where the binary should be
  #
@@ -9,10 +9,7 @@
  #
  # where YAP should look for binary libraries
  #
--LIBDIR=$(EROOTDIR)/lib
--YAPLIBDIR=$(EROOTDIR)/lib/Yap
-+LIBDIR=@libdir@
-+YAPLIBDIR=@libdir@/Yap
+@@ -18,15 +18,15 @@
  #
  # where YAP should look for architecture-independent Prolog libraries
  #
@@ -28,78 +25,26 @@
  #
 -INFODIR=$(SHAREDIR)/info
 +INFODIR=@infodir@
- 
  #
- # Add this flag to YAP_EXTRAS if you need the extension:
-diff -ur Yap-4.5.4.pre/library/mpi/Makefile.in Yap-4.5.4/library/mpi/Makefile.in
---- Yap-4.5.4.pre/library/mpi/Makefile.in	2004-12-09 21:38:49.420824632 +0000
-+++ Yap-4.5.4/library/mpi/Makefile.in	2004-12-09 21:39:06.391244736 +0000
-@@ -21,7 +21,7 @@
+ # where to store documentation files
+ #
+--- yap-6.2.2/library/Makefile.in.orig	2011-02-03 12:25:28.000000000 +0100
++++ yap-6.2.2/library/Makefile.in	2012-03-28 19:49:09.476500101 +0200
+@@ -5,7 +5,7 @@
+ #
+ # where the binary should be
+ #
+-BINDIR = $(ROOTDIR)/bin
++BINDIR = @bindir@
+ #
  # where YAP should look for binary libraries
  #
- LIBDIR=$(EROOTDIR)/lib
--YAPLIBDIR=$(EROOTDIR)/lib/Yap
-+YAPLIBDIR=@libdir@/Yap
+@@ -13,7 +13,7 @@
  #
  # where YAP should look for architecture-independent Prolog libraries
  #
-diff -ur Yap-4.5.4.pre/library/random/Makefile.in Yap-4.5.4/library/random/Makefile.in
---- Yap-4.5.4.pre/library/random/Makefile.in	2004-12-09 21:38:49.420824632 +0000
-+++ Yap-4.5.4/library/random/Makefile.in	2004-12-09 21:39:06.392244584 +0000
-@@ -12,7 +12,7 @@
- #
- # where YAP should look for libraries
- #
--LIBDIR=$(EROOTDIR)/lib/Yap
-+LIBDIR=@libdir@/Yap
+-SHAREDIR=$(ROOTDIR)/share
++SHAREDIR=@datadir@
  #
  #
- CC=@CC@
-diff -ur Yap-4.5.4.pre/library/regex/Makefile.in Yap-4.5.4/library/regex/Makefile.in
---- Yap-4.5.4.pre/library/regex/Makefile.in	2004-12-09 21:38:49.424824024 +0000
-+++ Yap-4.5.4/library/regex/Makefile.in	2004-12-09 21:39:06.392244584 +0000
-@@ -12,7 +12,7 @@
- #
- # where YAP should look for libraries
- #
--LIBDIR=$(EROOTDIR)/lib/Yap
-+LIBDIR=@libdir@/Yap
- #
- #
- CC=@CC@
-diff -ur Yap-4.5.4.pre/library/system/Makefile.in Yap-4.5.4/library/system/Makefile.in
---- Yap-4.5.4.pre/library/system/Makefile.in	2004-12-09 21:38:49.436822200 +0000
-+++ Yap-4.5.4/library/system/Makefile.in	2004-12-09 21:39:06.393244432 +0000
-@@ -12,7 +12,7 @@
- #
- # where YAP should look for libraries
- #
--LIBDIR=$(EROOTDIR)/lib/Yap
-+LIBDIR=@libdir@/Yap
- #
- #
- CC=@CC@
-diff -ur Yap-4.5.4.pre/library/Tries/Makefile.in Yap-4.5.4/library/Tries/Makefile.in
---- Yap-4.5.4.pre/library/Tries/Makefile.in	2004-12-09 21:38:49.403827216 +0000
-+++ Yap-4.5.4/library/Tries/Makefile.in	2004-12-09 21:39:06.390244888 +0000
-@@ -18,7 +18,7 @@
- #
- # where YAP should look for libraries
- #
--LIBDIR=$(EROOTDIR)/lib/Yap
-+LIBDIR=@libdir@/Yap
- #
- #
- CC=@CC@
-diff -ur Yap-4.5.4.pre/library/yap2swi/Makefile.in Yap-4.5.4/library/yap2swi/Makefile.in
---- Yap-4.5.4.pre/library/yap2swi/Makefile.in	2004-12-09 21:38:49.436822200 +0000
-+++ Yap-4.5.4/library/yap2swi/Makefile.in	2004-12-09 21:39:06.394244280 +0000
-@@ -12,7 +12,7 @@
- #
- # where YAP should look for libraries
- #
--LIBDIR=$(EROOTDIR)/lib/Yap
-+LIBDIR=@libdir@/Yap
- #
- #
- CC=@CC@
+ # You shouldn't need to change what follows.

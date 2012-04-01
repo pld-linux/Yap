@@ -1,25 +1,41 @@
---- Yap-4.5.5/configure.in.orig	2004-12-14 18:00:25.000000000 +0100
-+++ Yap-4.5.5/configure.in	2004-12-24 16:17:15.000000000 +0100
-@@ -335,18 +335,18 @@
- else
+--- yap-6.2.2/configure.in.orig	2011-10-24 00:11:26.000000000 +0200
++++ yap-6.2.2/configure.in	2012-03-28 20:41:12.536611558 +0200
+@@ -603,31 +603,31 @@
    INSTALL_COMMAND="install_unix"
+   ENABLE_WINCONSOLE="#"
    AC_CHECK_LIB(m,sin)
 -  AC_CHECK_LIB(socket,socket)
 +  AC_SEARCH_LIBS(socket,socket)
    dnl X/Open Networking is sometimes a separate library
 -  AC_CHECK_LIB(xnet,getsockname)
 +  AC_SEARCH_LIBS(getsockname,xnet)
+   AC_CHECK_LIB(stdc++,main)
 +  AC_CHECK_FUNC(gethostbyname, , [
    AC_CHECK_LIB(nsl,main,
  	have_nsl=yes
  	,
  	have_nsl=no)
 +  ])
+   AC_CHECK_LIB(crypt,main)
+-  AC_CHECK_LIB(nss_files,main)
+-  AC_CHECK_LIB(nss_dns,main)
+-  AC_CHECK_LIB(resolv,main)
++  AC_SEARCH_LIBS(gethostbyname,resolv)
  fi
  
  if test "$yap_cv_readline" != "no"
  then
--  AC_CHECK_LIB(termcap,tgetent)
--  AC_CHECK_LIB(ncurses,main)
-   AC_CHECK_LIB(readline,readline)
+   AC_CHECK_LIB([readline], [main],[
+                 AC_DEFINE([HAVE_LIBREADLINE], [1],[Define if you have libreadline])
+-		LIBS="$LIBS -lreadline -lncurses"
++		LIBS="$LIBS -lreadline"
+               ],
+               [if test "x$with_readline" != xcheck; then
+                  AC_MSG_FAILURE(
+                    [--with-readline was given, but test for readline failed])
+                fi
+-              ], -lncurses)
++              ])
  fi
+ if test "$yap_cv_gmp" != "no"
+ then

@@ -1,27 +1,29 @@
+# TODO: liblam (MPI) or MPE
 Summary:	Prolog Compiler
 Summary(pl.UTF-8):	Kompilator Prologu
 Name:		Yap
-Version:	4.5.5
-Release:	3
+Version:	6.2.2
+Release:	1
 License:	Artistic
 Group:		Development/Languages
-Source0:	http://dl.sourceforge.net/yap/%{name}-%{version}.tar.gz
-# Source0-md5:	661e289f4bdac0e6cfc7e59d4421c2a8
+Source0:	http://www.dcc.fc.up.pt/~vsc/Yap/yap-%{version}.tar.gz
+# Source0-md5:	95eaa54978e4811ff6e504e7dca9e835
 Patch0:		%{name}-acdirs.patch
-Patch1:		%{name}-port.patch
-Patch2:		%{name}-nolibs.patch
-Patch3:		%{name}-info.patch
-URL:		http://www.ncc.up.pt/~vsc/Yap/
-BuildRequires:	autoconf
+Patch1:		%{name}-nolibs.patch
+Patch2:		%{name}-info.patch
+URL:		http://www.dcc.fc.up.pt/~vsc/Yap/
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gmp-devel
 BuildRequires:	indent
+BuildRequires:	mysql-devel
 BuildRequires:	readline-devel
+BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
+BuildRequires:	unixODBC-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# follow configure
-%define		specflags_ia32	-DBP_FREE
 
 %description
 A high-performance Prolog compiler developed at LIACC, Universidade do
@@ -50,20 +52,17 @@ Static library for YAP prolog.
 Statyczna biblioteka dla kompilatora prologu YAP.
 
 %prep
-%setup -q
+%setup -q -n yap-%{version}
+%undos configure.in
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
-CFLAGS="%{rpmcflags}%{!?debug: -fomit-frame-pointer} -Wall"
 %configure \
-	C_INTERF_FLAGS="%{rpmcflags} -Wall" \
-	C_PARSER_FLAGS="%{rpmcflags} -Wall" \
 	--enable-coroutining \
 	%{?debug:--enable-debug-yap} \
 	--enable-depth-limit \
@@ -71,43 +70,42 @@ CFLAGS="%{rpmcflags}%{!?debug: -fomit-frame-pointer} -Wall"
 
 %{__make}
 
-%{__make} -C docs info
+%{__make} info
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_infodir},%{_examplesdir}/%{name}-%{version},%{_libdir}/%{name}}
 
-%{__make} install \
+%{__make} install install_info \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install docs/*info* $RPM_BUILD_ROOT%{_infodir}
+mv -f $RPM_BUILD_ROOT%{_datadir}/Yap/clpbn/examples \
+	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/clpbn
 
-for d in chr clpqr; do
-	mv -f $RPM_BUILD_ROOT%{_datadir}/Yap/$d/examples \
-		$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/$d
-done
-
-%post
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-/sbin/ldconfig
-
-%postun
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-/sbin/ldconfig
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/web/css
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/Yap
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+
+%postun
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+
 %files
 %defattr(644,root,root,755)
-%doc README* changes4.3.html docs/yap.tex
+%doc README* changes*.html docs/yap.tex
 %attr(755,root,root) %{_bindir}/yap
 %dir %{_libdir}/%{name}
 %attr(755,root,root) %{_libdir}/%{name}/*.so
-%attr(755,root,root) %{_libdir}/%{name}/startup
+%attr(755,root,root) %{_libdir}/%{name}/startup.yss
 %{_datadir}/%{name}
 %{_includedir}/%{name}
-%{_infodir}/*info*
+%{_infodir}/pillow_doc.info*
+%{_infodir}/yap.info*
 %{_examplesdir}/%{name}-%{version}
 
 %files static

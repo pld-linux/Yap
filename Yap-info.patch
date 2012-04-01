@@ -1,5 +1,5 @@
---- Yap-4.5.5/docs/yap.tex.orig	2004-12-14 18:00:28.000000000 +0100
-+++ Yap-4.5.5/docs/yap.tex	2004-12-24 17:00:36.000000000 +0100
+--- yap-6.2.2/docs/yap.tex.orig	2011-08-19 17:08:29.000000000 +0200
++++ yap-6.2.2/docs/yap.tex	2012-03-28 20:51:18.609960843 +0200
 @@ -33,9 +33,9 @@
  
  @ifnottex
@@ -7,8 +7,20 @@
 -@dircategory The YAP Prolog System
 +@dircategory Programming Languages:
  @direntry
--* Yap: (yap).           YAP Prolog User's Manual.
-+* Yap: (yap).				YAP Prolog User's Manual
+-* YAP: (yap).           YAP Prolog User's Manual.
++* YAP: (yap).				YAP Prolog User's Manual
  @end direntry
  @end format
  @end ifnottex
+--- yap-6.2.2/LGPL/pillow/doc/pillow_doc.info.orig	2010-10-18 10:48:20.000000000 +0200
++++ yap-6.2.2/LGPL/pillow/doc/pillow_doc.info	2012-03-29 18:40:39.032595187 +0200
+@@ -2,8 +2,7 @@
+ pillow_doc.texi.
+ 
+ START-INFO-DIR-ENTRY
+-* pillow: (pillow_doc.info).
+-	The PiLLoW Web Programming Library
++* pillow: (pillow_doc.info).		The PiLLoW Web Programming Library
+ END-INFO-DIR-ENTRY
+ 
+    The PiLLoW library ("Programming in Logic Languages on the Web")
