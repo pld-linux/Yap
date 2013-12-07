@@ -12,6 +12,15 @@
  @end direntry
  @end format
  @end ifnottex
+@@ -15820,7 +15820,7 @@
+ We next discuss several issues on trying to make Prolog programs run
+ fast in YAP. We assume two different programming styles:
+ 
+-@table @bullet
++@table @code
+ @item Execution of @emph{deterministic} programs often
+ boils down to a recursive loop of the form:
+ @example
 --- yap-6.2.2/LGPL/pillow/doc/pillow_doc.info.orig	2010-10-18 10:48:20.000000000 +0200
 +++ yap-6.2.2/LGPL/pillow/doc/pillow_doc.info	2012-03-29 18:40:39.032595187 +0200
 @@ -2,8 +2,7 @@
