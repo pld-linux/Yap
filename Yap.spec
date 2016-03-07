@@ -6,6 +6,7 @@ Version:	6.2.2
 Release:	3
 License:	Artistic
 Group:		Development/Languages
+#Source0Download: http://www.dcc.fc.up.pt/~vsc/Yap/downloads.html
 Source0:	http://www.dcc.fc.up.pt/~vsc/Yap/yap-%{version}.tar.gz
 # Source0-md5:	95eaa54978e4811ff6e504e7dca9e835
 Patch0:		%{name}-acdirs.patch
