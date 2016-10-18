@@ -3,7 +3,7 @@ Summary:	Prolog Compiler
 Summary(pl.UTF-8):	Kompilator Prologu
 Name:		Yap
 Version:	6.2.2
-Release:	4
+Release:	5
 License:	Artistic
 Group:		Development/Languages
 #Source0Download: http://www.dcc.fc.up.pt/~vsc/Yap/downloads.html
@@ -12,6 +12,8 @@ Source0:	http://www.dcc.fc.up.pt/~vsc/Yap/yap-%{version}.tar.gz
 Patch0:		%{name}-acdirs.patch
 Patch1:		%{name}-nolibs.patch
 Patch2:		%{name}-info.patch
+Patch3:		Friend-function-template-defined-in-a-class-cannot-b.patch
+Patch4:		Off-by-one-error-when-initializing-yap_flags.patch
 URL:		http://www.dcc.fc.up.pt/~vsc/Yap/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -58,6 +60,8 @@ Statyczna biblioteka dla kompilatora prologu YAP.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
