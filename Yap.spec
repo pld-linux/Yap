@@ -1,9 +1,11 @@
-# TODO: liblam (MPI) or MPE
+# TODO:
+# - liblam (MPI) or MPE
+# - fix x32 build (infinite loop in compiler during bootstrap)
 Summary:	Prolog Compiler
 Summary(pl.UTF-8):	Kompilator Prologu
 Name:		Yap
 Version:	6.2.2
-Release:	5
+Release:	6
 License:	Artistic
 Group:		Development/Languages
 #Source0Download: http://www.dcc.fc.up.pt/~vsc/Yap/downloads.html
@@ -26,6 +28,7 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 BuildRequires:	unixODBC-devel
 BuildRequires:	zlib-devel
+ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
